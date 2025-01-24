@@ -10,7 +10,8 @@ const apiCall = async (
 ) => {
   console.log("hello from api call", secretKey, data, prevQuestion);
   const formData = {
-    secretCode: secretKey,
+    secretCode:
+      "U2FsdGVkX1+vTJ0TEyvdQtOXrkQIY0KVGuyJhjBPref53SOUUfuqKOuWqjCjvuSqLQvA0mAGjn0HZeXXDFMsOa1EvPcm835bnYqt7UqrH6AbCiCYobS+mHDNRU7VaOhU",
     question: data.data,
     prevQuestion: prevQuestion,
   };
@@ -26,8 +27,8 @@ const apiCall = async (
     console.log("response", response);
     setPrevQuestion(data.data);
     const tempData: IData = {
-      data: response,
-      type: "Question",
+      data: response.response,
+      type: "Response",
     };
     setConversion((currentData) => [...currentData, tempData]);
   }

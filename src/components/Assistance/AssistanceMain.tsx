@@ -27,7 +27,7 @@ const AssistanceMain = ({ secretKey, containerStyle }: AssistanceMainProp) => {
 
       {modal && (
         <div
-          className={`h-[60vh] md:h-[75vh] w-72 md:w-80 flex-row mb-10 md:mb-4`}
+          className={`h-[60vh] md:h-[75vh] w-72 md:w-96 flex-row mb-10 md:mb-4`}
           style={containerStyle}
         >
           <div className="flex justify-end mb-1">
