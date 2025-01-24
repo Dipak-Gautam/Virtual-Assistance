@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { FaRegUserCircle } from "react-icons/fa";
-import { IoIosArrowBack, IoIosCloseCircle } from "react-icons/io";
+import { useState } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
 import { SiCircuitverse } from "react-icons/si";
 import MessageMain from "./AssistanceComponent/MessageMain/MessageMain";
+import AssistanceBanner from "./AssistanceComponent/Banner/AssistanceBanner";
+import { SlClose } from "react-icons/sl";
 
 interface AssistanceMainProp {
   secretKey: string;
@@ -30,28 +31,15 @@ const AssistanceMain = ({ secretKey, containerStyle }: AssistanceMainProp) => {
           className={`h-[60vh] md:h-[75vh] w-72 md:w-96 flex-row mb-10 md:mb-4`}
           style={containerStyle}
         >
-          <div className="flex justify-end mb-1">
-            <IoIosCloseCircle
+          <div className="flex justify-end mb-2">
+            <SlClose
               color="red"
-              size={30}
               onClick={() => showModal(false)}
+              className="shadow-sm shadow-white/50 bg-transparent rounded-full text-2xl hover:border hover:border-black"
             />
           </div>
           <div className="flex flex-col border border-slate-300 rounded-xl h-[58vh] md:h-[71vh] overflow-hidden ">
-            <div className="flex bg-green-500 p-2 items-center space-x-2">
-              <div>
-                <IoIosArrowBack color="white" size={25} />
-              </div>
-              <div className="flex space-x-2">
-                <div className=" bg-white rounded-lg justify-center items-center px-1 pt-1.5">
-                  <FaRegUserCircle color="green" size={25} />
-                </div>
-                <div className="font-serif text-lg leading-none">
-                  <p className="text-base">Kp Ba</p>
-                  <p className="text-xs -mt-1">Ai Assistance </p>
-                </div>
-              </div>
-            </div>
+            <AssistanceBanner showModal={showModal} />
             <MessageMain secretKey={secretKey} />
           </div>
         </div>

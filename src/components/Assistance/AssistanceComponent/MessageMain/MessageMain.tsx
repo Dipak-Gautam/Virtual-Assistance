@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import backgroundImage2 from "../asset/OIP.jpg";
 import { IoMdSend } from "react-icons/io";
 import apiCall from "../apiCall/apiCall";
+import SendReceiveText from "./MessageComponents/SendReceiveText";
+import SendMessage from "./MessageComponents/SendMessage";
 
 export interface IData {
   data: string | null;
@@ -57,7 +59,6 @@ const MessageMain = ({ secretKey }: MessageProp) => {
         messageContainer.current.scrollHeight;
     }
   }, [conversion]);
-  console.log("conversation : ", conversion);
 
   return (
     <div
@@ -77,66 +78,16 @@ const MessageMain = ({ secretKey }: MessageProp) => {
             maxHeight: "calc(75vh - 157px)",
           }}
         >
-          <style>
-            {`
-          .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.4);
-            border-radius: 4px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(0, 0, 0, 0.6);
-          }
-          .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-          }
-          .custom-scrollbar::-webkit-scrollbar-button {
-            display: none;
-          }
-          .custom-scrollbar {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
-          }
-        `}
-          </style>
-          {conversion.map((item: IData) => (
-            <div
-              className={` w-full flex my-3 px-2  ${
-                item.type == "Question" && "justify-end"
-              }`}
-            >
-              <p
-                className={`text-black p-1 px-2 text-base max-w-[80%] break-words ${
-                  item.type == "Question" ? "bg-green-300" : "bg-gray-300  "
-                } rounded-xl  leading-5`}
-              >
-                {item.data}
-              </p>
-            </div>
-          ))}
+          <SendReceiveText conversation={conversion} />
         </div>
-        <div className="text-black text-xs w-full my-1 px-2">typing....</div>
-        <div className=" mb-1 md:mb-0  w-full px-3 flex justify-between space-x-2 ">
-          <textarea
-            ref={input}
-            className="border border-slate-300 rounded-xl  w-full text-black text-base p-2 bg-white"
-            style={{
-              overflowY: "hidden",
-              resize: "none",
-              lineHeight: "1.5",
-            }}
-            rows={1}
-            onInput={handleInput}
-          />
-          <div
-            className="bg-green-500 rounded-full p-1 w-12 h-10 flex justify-center items-center pl-2"
-            onClick={() => handleSubmit()}
-          >
-            <IoMdSend color="white" size={25} />
-          </div>
+        <div className="text-black text-xs w-full my-1 px-5 text-left">
+          typing....
         </div>
+        <SendMessage
+          handleInput={handleInput}
+          handleSubmit={handleSubmit}
+          input={input}
+        />
       </div>
     </div>
   );
