@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import backgroundImage2 from "../asset/OIP.jpg";
 import { IoMdSend } from "react-icons/io";
-// import apicall from "./apicall";
+import apiCall from "../apiCall/apiCall";
 
 export interface IData {
   data: string | null;
@@ -48,7 +48,7 @@ const MessageMain = ({ secretKey }: MessageProp) => {
     const textarea = input.current;
     if (textarea == null) return;
     textarea.style.height = "auto";
-    // apicall(seckretKey, temp, prevQuestion, setPrevQuestion, setConversesion);
+    apiCall(secretKey, temp, prevQuestion, setPrevQuestion, setConversion);
   };
 
   useEffect(() => {
